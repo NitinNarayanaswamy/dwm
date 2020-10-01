@@ -1,15 +1,15 @@
 /* See LICENSE file for copyright and license details. */
 
 /* include */
-#include <X11/XF86keysym.h>
+/*#include <X11/XF86keysym.h>*/
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "DejaVu Sans Mono:size=14" };
-static const char dmenufont[]       = "DejaVu Sans Mono:size=14";
+static const char *fonts[]          = { "Noto Sans Mono Medium:size=12" };
+static const char dmenufont[]       = "Noto Sans Mono Medium:size=12";
 static const char col_black[]       = "#293241";
 static const char col_orange[]      = "#EE6C4D";
 /*static const char col_lighterblue[] = "#E0FBFC";*/
@@ -27,7 +27,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "1", "2", "3", "4"};
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -45,9 +45,9 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
+	{ "T",      tile },    /* first entry is default */
+	{ "F",      NULL },    /* no layout function means floating behavior */
+	{ "M",      monocle },
 };
 
 /* key definitions */
@@ -68,9 +68,9 @@ static const char *termcmd[]  = { "st", NULL };
 
 /* my_commands */
 static const char *browsercmd[] = { "firefox", NULL };
-static const char *mutecmd[] = { "amixer", "-q", "set", "Master", "toggle", NULL };
-static const char *volumeupcmd[] = { "amixer", "-q", "set", "Master", "5%+", "unmute", NULL };
-static const char *volumedowncmd[] = { "amixer", "-q", "set", "Master", "5%-", "unmute", NULL };
+//static const char *mutecmd[] = { "amixer", "-q", "set", "Master", "toggle", NULL };
+//static const char *volumeupcmd[] = { "amixer", "-q", "set", "Master", "5%+", "unmute", ";", "pkill", "-SIGTERM", "dwmbar", ";", "dwmbar", NULL };
+//static const char *volumedowncmd[] = { "amixer", "-q", "set", "Master", "5%-", "unmute", ";", "pkill", "-SIGTERM", "dwmbar", ";", "dwmbar", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -98,18 +98,15 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ 0,                            XF86XK_AudioMute,        spawn, {.v = mutecmd} },
-	{ 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = volumeupcmd} },
-	{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = volumedowncmd} },
+	{ MODKEY|ShiftMask,                       XK_plus,   spawn,          SHCMD("amixer -q set Master 5%+ unmute; pkill -SIGTERM dwmbar; dwmbar")},
+	{ MODKEY|ShiftMask,                       XK_minus,  spawn,          SHCMD("amixer -q set Master 5%- unmute; pkill -SIGTERM dwmbar; dwmbar")},
+	//{ 0,                            XF86XK_AudioMute,        spawn, {.v = mutecmd} },
+	//{ 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = volumeupcmd} },
+	//{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = volumedowncmd} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 
