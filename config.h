@@ -8,23 +8,56 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Noto Sans Mono Medium:size=12" };
-static const char dmenufont[]       = "Noto Sans Mono Medium:size=12";
-static const char col_black[]       = "#293241";
-static const char col_orange[]      = "#EE6C4D";
-/*static const char col_lighterblue[] = "#E0FBFC";*/
-static const char col_lightblue[]   = "#98C1D9";
-/*static const char col_darkblue[]    = "#3D5A80";*/
+static const char *fonts[]          = { "Noto Sans Mono Medium:size=14" };
+static const char dmenufont[]       = "Noto Sans Mono Medium:size=14";
+
+/* orange-theme, palette from https: https://coolors.co/3d5a80-98c1d9-e0fbfc-ee6c4d-293241 */
+static const char col_bg[]      = "#293241";
+static const char col_theme[]   = "#EE6C4D";
+static const char col_fg[]      = "#98C1D9";
+
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_lightblue, col_black, col_black },
-	[SchemeSel]  = { col_orange, col_black, col_orange },
-	[SchemeStatus]  = { col_lightblue, col_black, "#000000" },
-	[SchemeTagsSel]  = { col_black, col_orange, "#000000" },
-    [SchemeTagsNorm]  = { col_lightblue, col_black, "#000000" },
-    [SchemeInfoSel]  = { col_orange, col_black, "#000000" },
-    [SchemeInfoNorm]  = { col_lightblue, col_black, "#000000" },
+	[SchemeNorm]        = { col_fg, col_bg, col_bg },
+	[SchemeSel]         = { col_theme, col_bg, col_theme },
+	[SchemeStatus]      = { col_fg, col_bg, "#000000" },
+	[SchemeTagsSel]     = { col_bg, col_theme, "#000000" },
+	[SchemeTagsNorm]    = { col_fg, col_bg, "#000000" },
+	[SchemeInfoSel]     = { col_theme, col_bg, "#000000" },
+	[SchemeInfoNorm]    = { col_fg, col_bg, "#000000" },
 };
+
+/* nebula-orange-theme, based on https://imgur.com/FUd52am */
+//static const char col_bg[]      = "#26203C";
+//static const char col_theme[]   = "#E57861";
+//static const char col_fg[]      = "#34AEA3";
+//
+//static const char *colors[][3]      = {
+//	/*               fg         bg         border   */
+//	[SchemeNorm]        = { col_fg, col_bg, col_bg },
+//	[SchemeSel]         = { col_theme, col_bg, col_fg },
+//	[SchemeStatus]      = { col_theme, col_bg, "#000000" },
+//	[SchemeTagsSel]     = { col_bg, col_fg, "#000000" },
+//	[SchemeTagsNorm]    = { col_theme, col_bg, "#000000" },
+//	[SchemeInfoSel]     = { col_fg, col_bg, "#000000" },
+//	[SchemeInfoNorm]    = { col_fg, col_bg, "#000000" },
+//};
+
+/* nebula-turquoise-theme, based on https://imgur.com/FUd52am */
+//static const char col_bg[]      = "#26203C";
+//static const char col_theme[]   = "#34AEA3";
+//static const char col_fg[]      = "#1D6573";
+//
+//static const char *colors[][3]      = {
+//	/*               fg         bg         border   */
+//	[SchemeNorm]        = { col_fg, col_bg, col_bg },
+//	[SchemeSel]         = { col_theme, col_bg, col_theme },
+//	[SchemeStatus]      = { col_theme, col_bg, "#000000" },
+//	[SchemeTagsSel]     = { col_bg, col_theme, "#000000" },
+//	[SchemeTagsNorm]    = { col_fg, col_bg, "#000000" },
+//	[SchemeInfoSel]     = { col_theme, col_bg, "#000000" },
+//	[SchemeInfoNorm]    = { col_fg, col_bg, "#000000" },
+//};
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4"};
@@ -63,7 +96,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_black, "-nf", col_lightblue, "-sb", col_black, "-sf", col_orange, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bg, "-nf", col_fg, "-sb", col_bg, "-sf", col_theme, NULL };
 static const char *termcmd[]  = { "st", NULL };
 
 /* my_commands */
