@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* include */
-/*#include <X11/XF86keysym.h>*/
+#include <X11/XF86keysym.h>
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -101,9 +101,6 @@ static const char *termcmd[]  = { "st", NULL };
 
 /* my_commands */
 static const char *browsercmd[] = { "firefox", NULL };
-//static const char *mutecmd[] = { "amixer", "-q", "set", "Master", "toggle", NULL };
-//static const char *volumeupcmd[] = { "amixer", "-q", "set", "Master", "5%+", "unmute", ";", "pkill", "-SIGTERM", "dwmbar", ";", "dwmbar", NULL };
-//static const char *volumedowncmd[] = { "amixer", "-q", "set", "Master", "5%-", "unmute", ";", "pkill", "-SIGTERM", "dwmbar", ";", "dwmbar", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -131,11 +128,9 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ MODKEY,                       XK_equal,  spawn,          SHCMD("amixer -q set Master 5%+ unmute && kill -10 $(pidof -x dwmbar)") },
-	{ MODKEY,                       XK_minus,  spawn,          SHCMD("amixer -q set Master 5%- unmute && kill -10 $(pidof -x dwmbar)") },
-	//{ 0,                            XF86XK_AudioMute,        spawn, {.v = mutecmd} },
-	//{ 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = volumeupcmd} },
-	//{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = volumedowncmd} },
+	{ 0, XF86XK_AudioMute,                     spawn,          SHCMD("amixer -q set Master toggle && kill -10 $(pidof -x dwmbar)") },
+	{ 0, XF86XK_AudioRaiseVolume,              spawn,          SHCMD("amixer -q set Master 5%+ unmute && kill -10 $(pidof -x dwmbar)") },
+	{ 0, XF86XK_AudioLowerVolume,              spawn,          SHCMD("amixer -q set Master 5%- unmute && kill -10 $(pidof -x dwmbar)") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
