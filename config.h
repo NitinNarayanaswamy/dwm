@@ -74,7 +74,7 @@ static const Rule rules[] = {
 /* layout(s) */
 static const float mfact     = 0.5; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -128,9 +128,9 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ 0, XF86XK_AudioMute,                     spawn,          SHCMD("amixer -q set Master toggle && kill -10 $(pidof -x dwmbar)") },
-	{ 0, XF86XK_AudioRaiseVolume,              spawn,          SHCMD("amixer -q set Master 5%+ unmute && kill -10 $(pidof -x dwmbar)") },
-	{ 0, XF86XK_AudioLowerVolume,              spawn,          SHCMD("amixer -q set Master 5%- unmute && kill -10 $(pidof -x dwmbar)") },
+	{ 0, XF86XK_AudioMute,                     spawn,          SHCMD("amixer -q set Master toggle && kill -USR1 $(pidof -x dwmbar)") },
+	{ 0, XF86XK_AudioRaiseVolume,              spawn,          SHCMD("amixer -q set Master 5%+ unmute && kill -USR1 $(pidof -x dwmbar)") },
+	{ 0, XF86XK_AudioLowerVolume,              spawn,          SHCMD("amixer -q set Master 5%- unmute && kill -USR1 $(pidof -x dwmbar)") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
