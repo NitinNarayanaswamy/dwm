@@ -8,8 +8,8 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Noto Sans Mono Medium:size=14" };
-static const char dmenufont[]       = "Noto Sans Mono Medium:size=14";
+static const char *fonts[]          = { "NotoSansMono Nerd Font:style=Medium:size=14" };
+static const char dmenufont[]       = "NotoSansMono Nerd Font:style=Medium:size=14";
 
 /* orange-theme, palette from https: https://coolors.co/3d5a80-98c1d9-e0fbfc-ee6c4d-293241 */
 static const char col_bg[]      = "#293241";
